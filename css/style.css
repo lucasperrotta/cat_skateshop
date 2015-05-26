@@ -1,0 +1,183 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family:"AtlasTypewriterRegular", "Andale Mono", "Consolas", "Lucida Console", "Menlo", "Luxi Mono", monospace;
+}
+body {
+	background: url("img/bg2.jpg");
+}
+::-moz-selection { /* Codigo pro Firefox */
+    color:#fff;
+    background:#0e0e0e;
+}
+
+::selection {
+    color:#fff;
+    background:#0e0e0e;
+}
+
+#wrapper {
+	width: 1280px;
+	background: yellow;
+	margin: auto;
+}
+
+#header {
+	width: 100%;
+	height: 125px;
+	background: #e1ffdd;
+}
+#divlogo {
+	width: 244px;
+	height: 125px;
+	background: #e1ffdd;
+	float: left;
+}
+#logo {
+	width: 244px;
+	height: 125px;
+}
+#login {
+	width: 200px;
+	height: 100px;
+	background: gold;
+	float: right;
+}
+
+#nav {
+	width: 100%;
+	height: 45px;
+	background: black;
+}
+#nav ul {
+	list-style:none;
+	padding: 10px 0px 0px 0px;
+	color:#ffffff;
+	font-size: 20px;
+}
+#nav ul li {
+	display:inline;
+	border-right:2px solid #ffffff;
+	padding:0px 30px 0px 31px;
+}
+#nav li a:link {
+	color:white;
+	text-decoration:none;
+}
+#nav li a:visited {
+	color:white;
+	text-decoration:none;
+}
+#nav li a:hover {
+	color:#6cdc5d;
+	text-decoration:none;
+	transition:all .2s ease-in-out;
+}
+#nav li a:active {
+	color:gray;
+	text-decoration:none;
+}
+#nav a li {
+	border: none;
+	margin-right: 12px;
+}
+#nav a:link {
+	color:white;
+	text-decoration:none;
+}
+#nav a:visited {
+	color:white;
+	text-decoration:none;
+}
+#nav a:hover {
+	color:#6cdc5d;
+	text-decoration:none;
+	transition:all .2s ease-in-out;
+}
+#nav a:active {
+	color:gray;
+	text-decoration:none;
+}
+#nav form li {
+	border: none;
+	float: right;
+	margin-top: -15;
+
+}
+/*PESQUISA*/
+#nav ul li form {
+	float: right;
+}
+
+
+#sidebar {
+	width: 200px;
+	/*height: 110px;*/
+	background: #323232;
+	float: left;
+}
+#sidebar ul {
+	list-style-position: inside;
+	list-style: none;
+	margin-left: 10px;
+	color: #ffffff;
+	font-size: 15px;
+}
+#sidebar ul li {
+	margin-left: 10px;
+}
+form{
+	text-align: center;
+	
+ }
+
+#fundoContent {
+	width:100%;
+	float:left;
+	background:url("../img/fundocontent.gif");
+}
+#fundoContent h1{
+	text-align: center;
+}
+
+#content {
+	width: 90%;
+	min-height: 500px;
+	background: white;
+	margin: auto;
+
+}
+#content h1{
+	font-size:30px;
+	padding:15px 0px 15px 15px;
+	text-align:center;
+}
+#content h2{
+	font-size:20px;
+	margin: auto;
+	color:#0e0e0e;
+	/*padding:0px 0px 15px 70px;*/
+	text-align:center;
+}
+#content p{
+	font-size:14px;
+	padding:0px 10px 10px 0px;	
+}
+.consultaDados {
+	text-align: center;
+}
+#contentSidebar {
+	width: 1080px; 
+	min-height: 500px;
+	background: white;
+	float: left;
+}
+
+
+
+#footer {
+	width: 100%;
+	height: 60px;
+	background: #e1ffdd;
+	clear: both;
+}
