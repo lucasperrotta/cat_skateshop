@@ -3,7 +3,15 @@
 	<head>
 		<title>CAT | Skate Shop</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<?php
+			$con = mysql_connect("localhost","root","")
+			or die ("Não foi possível conexão com o banco de dados.");
+
+			$bd = mysql_select_db("cat_skateshop")
+			or die ("Não foi possível selecionar base de dados.");
+
+		?>
 	</head>
 
 	<body>

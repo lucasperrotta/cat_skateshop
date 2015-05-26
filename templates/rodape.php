@@ -1,4 +1,4 @@
-	</div><!--FECHA CONTENTSIDEBAR-->
+	</div><!--FECHA CONTETN OU CONTENTSIDEBAR-->
 
 			</div><!--FECHA FUNDO CONTENT-->
 
@@ -13,3 +13,4 @@
 	</body>
 
 </html>
+<?php mysql_close() ?>
