@@ -4,7 +4,7 @@
 
 			<div id="footer">
 
-				<p align="center">CAT SKATE SHOP BITCHIES!</p>
+				<p align="center">CAT SKATE SHOP @ Todos direitos reservados.</p>
 
 			</div><!--FECHA FOOTER-->
 

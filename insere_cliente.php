@@ -5,7 +5,15 @@
 
 	$tem_erro = False;
 	$erros = 0;
-	$nm_cliente = "";
+
+	if ($_FILES["foto_cliente"]["error"] == 0) {
+		$ext = substr($_FILES["foto_cliente"]["name"], strpos(strrev($_FILES["foto_cliente"]["name"]), ".") * -1);
+		$foto_cliente = md5(time().$_FILES["foto_cliente"]["name"]).".".$ext;
+		move_uploaded_file($_FILES['foto_cliente']['tmp_name'], "img/clientes/".$foto_cliente);
+	}else{
+		$foto_cliente = "nouser.png";
+	}
+	
 	if ( !empty($_POST['nm_cliente']) and !empty($_POST['cpf_cliente']) and !empty($_POST['sexo_cliente']) and !empty($_POST['tel_cliente']) and !empty($_POST['cep_cliente']) and !empty($_POST['uf_cliente']) and !empty($_POST['cidade_cliente']) and !empty($_POST['bairro_cliente']) and !empty($_POST['rua_cliente']) and !empty($_POST['numero_cliente']) and !empty($_POST['email_cliente']) and !empty($_POST['nm_usuario_cliente']) and !empty($_POST['senha_cliente']) ) {
 		$nm_cliente = $_POST['nm_cliente'];
 
@@ -40,7 +48,7 @@
 		$confirma_senha = $_POST['confirmasenha_cliente'];
 		$senha_teste = $_POST['senha_cliente'];
 		if ($confirma_senha == $senha_teste) {
-			$senha_cliente = $senha_teste;
+			$senha_cliente = sha1($senha_teste);
 		} else {
 			echo "Confirma senha não corresponde com sua senha. <b><a href='cadastra_cliente.php'>Tente novamente</a></b><br>";
 			$tem_erro = True;
@@ -53,7 +61,7 @@
 	}
 
 	if($con and $tem_erro == False) {
-		$sql = "insert into cliente (nm_cliente, cpf_cliente, sexo_cliente, dt_nasc_cliente, tel_cliente, cel_cliente, cep_cliente, uf_cliente, cidade_cliente, bairro_cliente, rua_cliente, numero_cliente, complemento_cliente, email_cliente, nm_usuario_cliente, senha_cliente) values ('$nm_cliente', '$cpf_cliente', '$sexo_cliente', '$dt_nasc_cliente', '$tel_cliente', '$cel_cliente', '$cep_cliente', '$uf_cliente', '$cidade_cliente', '$bairro_cliente', '$rua_cliente', '$numero_cliente', '$complemento_cliente', '$email_cliente', '$nm_usuario_cliente', '$senha_cliente')";
+		$sql = "insert into cliente (nm_cliente, cpf_cliente, sexo_cliente, dt_nasc_cliente, tel_cliente, cel_cliente, cep_cliente, uf_cliente, cidade_cliente, bairro_cliente, rua_cliente, numero_cliente, complemento_cliente, email_cliente, nm_usuario_cliente, senha_cliente, foto_cliente) values ('$nm_cliente', '$cpf_cliente', '$sexo_cliente', '$dt_nasc_cliente', '$tel_cliente', '$cel_cliente', '$cep_cliente', '$uf_cliente', '$cidade_cliente', '$bairro_cliente', '$rua_cliente', '$numero_cliente', '$complemento_cliente', '$email_cliente', '$nm_usuario_cliente', '$senha_cliente', '$foto_cliente')";
 		$rs  = mysql_query($sql, $con);
 		if ($rs) {
 			echo "<h1>Cadastro realizado com sucesso.</h1><br><a href='index.php'><b>Prosseguir</b></a>";

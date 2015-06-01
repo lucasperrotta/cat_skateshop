@@ -1,10 +1,10 @@
-<?php 
+ 	<?php 
 	include "templates/cabecario.php";
 	include "templates/menu_horizontal.php";
 ?>
 <h1>Cadastro de cliente: (* = Obrigatório!)</h1>
 <hr>
-<form name="incCliente" action="insere_cliente.php" method=POST>
+<form name="incCliente" action="insere_cliente.php" method=POST enctype='multipart/form-data'>
 	
 	<h2>Dados Pessoais</h2>
 	Nome completo *<br>
@@ -28,6 +28,7 @@
 	Complemento<br>  <input type="text" name="complemento_cliente" size=20 maxlength="70"><br>
 
 	<h2>Dados usuário</h2>
+	Foto<br><input type='file' name='foto_cliente' id='foto_cliente'><br>
 	Email*<br> <input type="text" name="email_cliente" size=20 maxlength="70"><br>
 	Nome de usuário*<br> <input type="text" name="nm_usuario_cliente" size=20 maxlength="20"><br>
 	Senha*<br> <input type="password" name="senha_cliente" size=20 maxlength="20"><br>

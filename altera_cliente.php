@@ -10,12 +10,15 @@
 ?>
 <h1>Cadastro de cliente: (* = Obrigatório!)</h1>
 <hr>
-<form name="incCliente" action="update_cliente.php" method=POST>
+<form name="incCliente" action="update_cliente.php" method=POST enctype='multipart/form-data'>
 	<input type=hidden name="id_cliente" value=<?php echo $vetor['id_cliente'] ?>>
+	<input type='hidden' name='foto_atual' value="<?php echo $vetor['foto_cliente']?>">
 	
 	<h2>Dados Pessoais</h2>
 	Nome completo *<br>
-	<input type="text" name="nm_cliente" size=20 maxlength="60" value=<?php echo $vetor["nm_cliente"] ?>> <br>
+	<input type="text" name="nm_cliente" size=20 maxlength="60" value='<?php echo $vetor["nm_cliente"] ?>'> <br>
+	Foto<br><img src="img/clientes/<?php echo $vetor['foto_cliente']; ?>" height="200"><br>
+	Alterar foto: <input type='file' name='foto_cliente' id='foto_cliente'><br>
 	CPF(Somente números) *<br>
 	<input type="text" name="cpf_cliente" size=13 maxlength="11" value=<?php echo $vetor['cpf_cliente'] ?>><br>
 	Sexo *<br>

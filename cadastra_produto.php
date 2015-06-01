@@ -1,12 +1,14 @@
 <?php 
 	include "templates/cabecario.php";
 	include "templates/menu_horizontal.php";
+
 ?>
 <h1>Cadastro de Produtos:</h1>
 <hr>
-<form name="incProduto" action="insere_produto.php" method=POST>
-	Nome do Produto <br> <input type="text" name="nm_produto" size=40 maxlength="60"> <br>
 
+<form name="incProduto" action="insere_produto.php" method=POST enctype='multipart/form-data'>
+	Nome do Produto <br> <input type="text" name="nm_produto" size=40 maxlength="60"> <br>
+	Foto:<input type = 'file' name = 'foto_produto' id = 'foto_produto'><br>
 	Categoria:<br>
 		<input type="radio" name="cat_produto" value="lixa">Lixa</input><br>
 		<input type="radio" name="cat_produto" value="shape">Shape</input><br>

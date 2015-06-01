@@ -4,9 +4,10 @@
 ?>
 <h1>Consulta de Produtos</h1>
 
-<table border=1 width=100% class="consultaDados">
+<table id="table">
 		<tr>
 			<th>ID</th>
+			<th>Foto</th>
 			<th>Nome</th>
 			<th>Categoria</th>
 			<th>Preço</th>
@@ -21,7 +22,12 @@
 	while($vetor = mysql_fetch_array($rs)) {
 ?>
 	<tr>
+
 		<td><?php echo $vetor["id_produto"]; ?></td>
+		<?php $foto_produto = "img/produtos/".$vetor["foto_produto"] ?>
+			<td align='center'> 
+				<img src="img/produtos/<?php echo $vetor['foto_produto']?>" height='100px'>
+			</td>
 		<td><?php echo $vetor["nm_produto"]; ?></td>
 		<td><?php echo $vetor["cat_produto"]; ?></td>
 		<td><?php echo $vetor["preco_produto"]; ?></td>

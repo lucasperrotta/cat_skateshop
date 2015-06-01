@@ -9,12 +9,14 @@
 			if ($vetor = mysql_fetch_array($rs)) { 
 ?>
 
-<form name="altProduto" action="update_produto.php" method=POST>
+<form name="altProduto" action="update_produto.php" method=POST enctype='multipart/form-data'>
+	<input type='hidden' name='foto_atual' value="<?php echo $vetor['foto_produto']?>">
 	<input type=hidden name="id_produto" value=<?php echo $vetor['id_produto'] ?>>
 	<h1>Alterar dados do produto:</h1>
 
-	Nome do Produto <br> <input type="text" name="nm_produto" size=40 maxlength="60" value=<?php echo $vetor['nm_produto'] ?>> <br>
-
+	Nome do Produto <br> <input type="text" name="nm_produto" size=40 maxlength="60" value="<?php echo $vetor['nm_produto'] ?>"> <br>
+	Foto<br><img src="img/produtos/<?php echo $vetor['foto_produto']; ?>" height="200"><br>
+	Alterar foto: <input type='file' name='foto_produto' id='foto_produto'><br>
 	Categoria:<br>
 		<input type="radio" name="cat_produto" value="lixa" <?php echo $vetor['cat_produto'] == "lixa"?"CHECKED":""?>>Lixa</input><br>
 		<input type="radio" name="cat_produto" value="shape" <?php echo $vetor['cat_produto'] == "shape"?"CHECKED":""?>>Shape</input><br>

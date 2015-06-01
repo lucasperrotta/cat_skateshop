@@ -5,7 +5,16 @@
 
 	$tem_erro = False;
 	$erros = 0;
-	$nm_cliente = "";
+	$foto_cliente = $_POST['foto_atual'];
+	if($_FILES["foto_cliente"]["error"] == 0){
+		//FOTO
+		$ext = substr($_FILES["foto_cliente"]["name"], strpos(strrev($_FILES["foto_cliente"]["name"]), ".") * -1);
+		$foto_cliente = md5(time().$_FILES["foto_cliente"]["name"]).".".$ext;
+		move_uploaded_file($_FILES['foto_cliente']['tmp_name'], "img/clientes/".$foto_cliente);
+	}
+	if ($_POST['foto_atual'] != "nouser.png") {
+		unlink('img/clientes/'.$_POST['foto_atual']);
+	}
 	if ( !empty($_POST['nm_cliente']) and !empty($_POST['cpf_cliente']) and !empty($_POST['sexo_cliente']) and !empty($_POST['tel_cliente']) and !empty($_POST['cep_cliente']) and !empty($_POST['uf_cliente']) and !empty($_POST['cidade_cliente']) and !empty($_POST['bairro_cliente']) and !empty($_POST['rua_cliente']) and !empty($_POST['numero_cliente']) and !empty($_POST['email_cliente']) and !empty($_POST['nm_usuario_cliente']) and !empty($_POST['senha_cliente']) ) {
 		$id_cliente = $_POST['id_cliente'];
 
@@ -71,7 +80,8 @@
 					complemento_cliente = '$complemento_cliente',
 					email_cliente = '$email_cliente',
 					nm_usuario_cliente = '$nm_usuario_cliente',
-					senha_cliente ='$senha_cliente'
+					senha_cliente ='$senha_cliente',
+					foto_cliente = '$foto_cliente'
 				WHERE id_cliente = $id_cliente";
 
 		$rs  = mysql_query($sql, $con);

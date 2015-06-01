@@ -4,10 +4,11 @@
 ?>
 <h1>Consulta de Clientes</h1>
 
-<h2>Identificação</h2>
-<table cellspacing=0 align="center" border=1 width=100% class="consultaDados">
+<center><h2>Identificação</h2></center>
+<table id="table">
 		<tr>
-			<th>Nome</th>
+			<th>Foto</th>
+			<th>Nome</th>			
 			<th>CPF</th>
 			<th>Sexo</th>
 			<th>Altera</th>
@@ -19,11 +20,14 @@
 	while($vetor = mysql_fetch_array($rs)) {
 ?>
 	<tr>
+		<td align='center'> 
+			<img src="img/clientes/<?php echo $vetor['foto_cliente']?>" height='100px'>
+		</td>
 		<td><?php echo $vetor["nm_cliente"]; ?></td>
 		<td><?php echo $vetor["cpf_cliente"]; ?></td>
 		<td><?php echo (($vetor["sexo_cliente"] == "m")?"Masculino":"Feminino"); ?></td>
-		<td><a href='altera_cliente.php?id= <?php echo $vetor["id_cliente"]; ?>'>Alterar dados de cliente</a></td>
-		<td><a href='delete_cliente.php?id= <?php echo $vetor["id_cliente"]; ?>'>Deletar cliente</a></td>
+		<td><a href='altera_cliente.php?id= <?php echo $vetor["id_cliente"]; ?>'> <img src="img/icone_editar.png" width="20"></a></td>
+		<td><a href='delete_cliente.php?id= <?php echo $vetor["id_cliente"]; ?>'><img src="img/icone_deletar.png" width="20"></a></td>
 	</tr>	
 <?php
 	}
