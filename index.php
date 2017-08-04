@@ -4,12 +4,26 @@
 ?>
 <h1>Lançamentos</h1>
 <?php 
+	/* Código antigo
 	$sql = "select * from produto order by id_produto desc;";
 	$rs = mysql_query($sql, $con);
+	*/
+	$pdo = conectar();
+	$buscaPonto = $pdo -> prepare("SELECT * FROM produto ORDER BY id_produto DESC");
+	//Executando a QUERY
+	$buscaPonto -> execute();
+	
+	$linha = $buscaPonto->fetchAll(PDO::FETCH_OBJ);
+	
+	/*Exibição antiga
 	while($vetor = mysql_fetch_array($rs)) {
 		$nm_produto = $vetor['nm_produto'];
 		$foto_produto = $vetor['foto_produto'];
-		$preco_produto = $vetor['preco_produto'];
+		$preco_produto = $vetor['preco_produto']; */
+	foreach ($linha as $linhas) {
+		$nm_produto = $linhas->nm_produto;
+		$foto_produto = $linhas->foto_produto;
+		$preco_produto = $linhas->preco_produto;
 ?>		
 
 	<div class='produto'>
