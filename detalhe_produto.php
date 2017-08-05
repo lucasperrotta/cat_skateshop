@@ -1,15 +1,23 @@
 <?php
 	include "templates/cabecario.php";
 	include "templates/menu_horizontal.php";
-	$sql = "select * from produto where id_produto=".$_GET['id'];
+	/*$sql = "select * from produto where id_produto=".$_GET['id'];
 	$rs = mysql_query($sql, $con);
-	while($vetor = mysql_fetch_array($rs)) {
+	while($vetor = mysql_fetch_array($rs)) {*/
+	$consultaProduto = $pdo -> prepare("SELECT * FROM produto WHERE id_produto = ".$_GET['id']);
+	//Executando a QUERY
+	$consultaProduto -> execute();
+	
+	$linha = $consultaProduto->fetchAll(PDO::FETCH_OBJ);
+
+	//while($vetor = mysql_fetch_array($rs)) {
+	foreach ($linha as $linhas) {
 ?>
-<h1> <?php echo $vetor["nm_produto"] ?> </h1>		
+<h1> <?php echo $linhas->nm_produto ?> </h1>		
 <center>
-	<img src = 'img/produtos/<?php echo $vetor["foto_produto"]?>' height = '250px'>
-	<p> <?php echo $vetor["desc_produto"] ?></p>
-	R$<?php echo $vetor['preco_produto']; ?>,00
+	<img src = 'img/produtos/<?php echo $linhas->foto_produto ?>' height = '250px'>
+	<p> <?php echo $linhas->desc_produto ?></p>
+	R$<?php echo substr($linhas->preco_produto, 0, -3); ?>,<?php echo substr($linhas->preco_produto, -2); ?>
 	<form action="insere_produto_compra.php" method=POST>
 		Quantidade:<br>
 		<input type="text" name="qtd_produto_pedido" value='1'  size=5 maxlength="10"><br>

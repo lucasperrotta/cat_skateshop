@@ -8,11 +8,11 @@
 	$sql = "select * from produto order by id_produto desc;";
 	$rs = mysql_query($sql, $con);
 	*/
-	$buscaPonto = $pdo -> prepare("SELECT * FROM produto ORDER BY id_produto DESC");
+	$consultaProduto = $pdo -> prepare("SELECT * FROM produto ORDER BY id_produto DESC LIMIT 12");
 	//Executando a QUERY
-	$buscaPonto -> execute();
+	$consultaProduto -> execute();
 	
-	$linha = $buscaPonto->fetchAll(PDO::FETCH_OBJ);
+	$linha = $consultaProduto->fetchAll(PDO::FETCH_OBJ);
 	
 	/*Exibição antiga
 	while($vetor = mysql_fetch_array($rs)) {
@@ -41,7 +41,7 @@
 		<div class='precoproduto'>
 			R$<?php echo substr($preco_produto, 0, -3); ?>,<?php echo substr($preco_produto, -2); ?>
 		</div>
-		<center class="linkvermais"><a  href='detalhe_produto.php?id=<?php echo $vetor["id_produto"]; ?>'>Ver mais</a></center>
+		<center class="linkvermais"><a  href='detalhe_produto.php?id=<?php echo $linhas->id_produto; ?>'>Ver mais</a></center>
 	</div>
 
 <?php 

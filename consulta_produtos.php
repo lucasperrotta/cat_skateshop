@@ -17,22 +17,29 @@
 			<th>Excluir</th>
 		</tr>
 <?php
-	$sql = "select * from produto;";
-	$rs = mysql_query($sql, $con);
-	while($vetor = mysql_fetch_array($rs)) {
+	/*$sql = "select * from produto;";
+	$rs = mysql_query($sql, $con);*/
+	$consultaProduto = $pdo -> prepare("SELECT * FROM produto ORDER BY id_produto DESC LIMIT 12");
+	//Executando a QUERY
+	$consultaProduto -> execute();
+	
+	$linha = $consultaProduto->fetchAll(PDO::FETCH_OBJ);
+
+	//while($vetor = mysql_fetch_array($rs)) {
+	foreach ($linha as $linhas) {
 ?>
 	<tr>
 
-		<td><?php echo $vetor["id_produto"]; ?></td>
-		<?php $foto_produto = "img/produtos/".$vetor["foto_produto"] ?>
+		<td><?php echo $linhas->id_produto; ?></td>
+		<?php $foto_produto = "img/produtos/".$linhas->foto_produto;?>
 			<td align='center'> 
-				<img src="img/produtos/<?php echo $vetor['foto_produto']?>" height='100px'>
+				<img src="img/produtos/<?php echo $linhas->foto_produto;?>" height='100px'>
 			</td>
-		<td><?php echo $vetor["nm_produto"]; ?></td>
-		<td><?php echo $vetor["cat_produto"]; ?></td>
-		<td><?php echo $vetor["preco_produto"]; ?></td>
-		<td><?php echo $vetor["qtd_produto"]; ?></td>
-		<td><?php echo $vetor["desc_produto"]; ?></td>
+		<td><?php echo $linhas->nm_produto   ; ?></td>
+		<td><?php echo $linhas->cat_produto  ; ?></td>
+		<td><?php echo $linhas->preco_produto; ?></td>
+		<td><?php echo $linhas->qtd_produto  ; ?></td>
+		<td><?php echo $linhas->desc_produto ; ?></td>
 
 		<td><a href='altera_produto.php?id= <?php echo $vetor["id_produto"]; ?>'> <img src="img/icone_editar.png" width="20"></a></td>
 		<td><a href='delete_produto.php?id= <?php echo $vetor["id_produto"]; ?>'><img src="img/icone_deletar.png" width="20"></a></td>
