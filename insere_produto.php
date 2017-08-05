@@ -21,13 +21,26 @@
 		echo "<p class='linkfeedback'>Preencha todos os campos para realizar o cadastro do produto! <b><a href='cadastra_produto.php'>Tente novamente</a></b></p>";
 	}
 	
-	if($con and $tem_erro == False) {
-		$sql = "insert into produto (nm_produto, cat_produto, desc_produto, preco_produto, qtd_produto, foto_produto) values ('$nm_produto', '$cat_produto', '$desc_produto', '$preco_produto', $qtd_produto, '$foto_produto')";
-		$rs = mysql_query($sql, $con);
-		if ($rs) {
+	if(!is_null($pdo) and !$tem_erro) {
+		$sql = $pdo -> prepare("INSERT INTO produto (nm_produto, cat_produto, desc_produto, preco_produto, qtd_produto, foto_produto) VALUES (:nm_produto, :cat_produto, :desc_produto, :preco_produto, :qtd_produto, :foto_produto)");
+
+		$sql -> bindValue(":nm_produto"   , $nm_produto   , PDO::PARAM_STR);
+		$sql -> bindValue(":cat_produto"  , $cat_produto  , PDO::PARAM_STR);
+		$sql -> bindValue(":desc_produto" , $desc_produto , PDO::PARAM_STR);
+		$sql -> bindValue(":preco_produto", $preco_produto                );
+		$sql -> bindValue(":qtd_produto"  , $qtd_produto  , PDO::PARAM_INT);
+		$sql -> bindValue(":foto_produto" , $foto_produto , PDO::PARAM_STR);
+
+		$sql -> execute();
+		$bdError = $sql->errorInfo();
+
+
+		if ($bdError[0] == 0) {
+			
 			echo "<h1>Produto cadastrado com sucesso.</h1><br><p class='linkfeedback'><a href='index.php'><b>Prosseguir</b></a></p>";
 		}else {
-			echo ("Erro de inclusão: ".mysql_error());
+			$errorInfo = print_r($bdError, true);
+			echo ("Erro de inclusão: ".$errorInfo);
 		}
 	} else {
 		echo ("Erro de conexão".mysql_error());
