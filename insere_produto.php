@@ -27,7 +27,7 @@
 		$sql -> bindValue(":nm_produto"   , $nm_produto   , PDO::PARAM_STR);
 		$sql -> bindValue(":cat_produto"  , $cat_produto  , PDO::PARAM_STR);
 		$sql -> bindValue(":desc_produto" , $desc_produto , PDO::PARAM_STR);
-		$sql -> bindValue(":preco_produto", $preco_produto                );
+		$sql -> bindValue(":preco_produto", $preco_produto, PDO::PARAM_STR);
 		$sql -> bindValue(":qtd_produto"  , $qtd_produto  , PDO::PARAM_INT);
 		$sql -> bindValue(":foto_produto" , $foto_produto , PDO::PARAM_STR);
 
