@@ -4,7 +4,7 @@
 	<head>
 		<title>CAT | Skate Shop</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css?version=12" />
 	</head>
 
 	<body>
