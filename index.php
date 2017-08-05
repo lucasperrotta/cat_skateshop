@@ -32,7 +32,7 @@
 		<div class='nomeproduto'>
 			<?php 
 				if (strlen($nm_produto) > 12) {
-					echo $nm_produto = substr($nm_produto, 0, 13)."..."; 
+					echo $nm_produto = substr($nm_produto, 0, 15); 
 				}else{
 					echo $nm_produto;
 				}
