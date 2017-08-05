@@ -27,7 +27,7 @@
 
 	<div class='produto'>
 		<div class='imgproduto'>
-			<center><img src = 'img/produtos/<?php echo $foto_produto?>' height = '120px' ></center>
+			<center><img src = 'img/produtos/<?php echo $foto_produto?>'></center>
 		</div>
 		<div class='nomeproduto'>
 			<?php 

@@ -187,10 +187,12 @@ form{
 }
 .imgproduto{
 	margin: auto;
-	height: 120px;
 }
 .imgproduto img{
 	margin:auto;
+	height: 120px;
+	max-width: 100%;
+	
 }
 .precoproduto{
 	max-width: 100%;
