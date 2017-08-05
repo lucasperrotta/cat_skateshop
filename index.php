@@ -8,7 +8,6 @@
 	$sql = "select * from produto order by id_produto desc;";
 	$rs = mysql_query($sql, $con);
 	*/
-	$pdo = conectar();
 	$buscaPonto = $pdo -> prepare("SELECT * FROM produto ORDER BY id_produto DESC");
 	//Executando a QUERY
 	$buscaPonto -> execute();
@@ -40,7 +39,7 @@
 			?>
 		</div>
 		<div class='precoproduto'>
-			R$<?php echo $preco_produto; ?>,00
+			R$<?php echo substr($preco_produto, 0, -3); ?>,<?php echo substr($preco_produto, -2); ?>
 		</div>
 		<center class="linkvermais"><a  href='detalhe_produto.php?id=<?php echo $vetor["id_produto"]; ?>'>Ver mais</a></center>
 	</div>
