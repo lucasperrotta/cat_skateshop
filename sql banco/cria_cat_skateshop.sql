@@ -7,7 +7,7 @@ CREATE TABLE produto (
 	desc_produto TEXT NOT NULL,
     qtd_produto INT NOT NULL,
     foto_produto CHAR(40),
-	preco_produto DECIMAL NOT NULL
+	preco_produto DECIMAL(10,2) NOT NULL
 );
 
 CREATE TABLE cliente(
