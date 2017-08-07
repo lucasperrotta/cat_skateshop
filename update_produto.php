@@ -25,23 +25,33 @@
 		echo "Todos os campos devem estar preenchidos para concluir a alteração! <b><a href='cadastra_cliente.php'>Tente novamente</a></b>";
 	}
 	
-	if($con and $tem_erro == False and $erro_foto == False) {
-		$sql = "UPDATE produto set 
-					nm_produto = '$nm_produto',
-					cat_produto = '$cat_produto',
-					desc_produto = '$desc_produto',
-					preco_produto = $preco_produto,
-					qtd_produto = $qtd_produto,
-					foto_produto = '$foto_produto'
-				WHERE id_produto = $id_produto";
-		$rs = mysql_query($sql, $con);
-		if ($rs) {
+	if(!$tem_erro and !$erro_foto) {
+		$atualizaProduto = $pdo -> prepare("UPDATE produto set 
+												nm_produto = :nm_produto,
+												cat_produto = :cat_produto,
+												desc_produto = :desc_produto,
+												preco_produto = :preco_produto,
+												qtd_produto = :qtd_produto,
+												foto_produto = :foto_produto
+											WHERE id_produto = :id_produto");
+		$atualizaProduto -> bindValue(":id_produto"   , $id_produto   , PDO::PARAM_INT);
+		$atualizaProduto -> bindValue(":nm_produto"   , $nm_produto   , PDO::PARAM_STR);
+		$atualizaProduto -> bindValue(":cat_produto"  , $cat_produto  , PDO::PARAM_STR);
+		$atualizaProduto -> bindValue(":desc_produto" , $desc_produto , PDO::PARAM_STR);
+		$atualizaProduto -> bindValue(":preco_produto", $preco_produto, PDO::PARAM_STR);
+		$atualizaProduto -> bindValue(":qtd_produto"  , $qtd_produto  , PDO::PARAM_INT);
+		$atualizaProduto -> bindValue(":foto_produto" , $foto_produto , PDO::PARAM_STR);
+
+		$atualizaProduto -> execute();
+		$bdError = $atualizaProduto->errorInfo();
+		if ($bdError[0] == 0) {
 			echo "<h1>Produto editado com sucesso.</h1><br><a href='consulta_produtos.php'><b>Continuar editando</b></a> ou <a href='index.php'><b>ir para página inicial.</b></a>";
-		}else {
-			echo ("Erro de atualização de dados: ".mysql_error());
+		} else {
+			$errorInfo = print_r($bdError, true);
+			echo ("Erro de inclusão: ".$errorInfo);
 		}
 	} else {
-		echo ("Erro de conexão".mysql_error());
+		echo ("Deu ruim!.");
 	}
 
 	include "templates/rodape.php";
