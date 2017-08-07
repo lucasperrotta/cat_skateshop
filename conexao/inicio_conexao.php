@@ -6,16 +6,14 @@ function conectar ()
     $user = "root"; //USUARIO DO BANCO
     $pass = ""; //SENHA DO USUARIO DO  BANCO
 
-    $conexao = new PDO("mysql:dbname=$dbn; host=$host", $user, $pass);
-
-    return $conexao;
+    try {
+        $conexao = new PDO("mysql:dbname=$dbn; host=$host", $user, $pass);
+        $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conexao;
+    } catch (PDOException $e) { 
+        echo "Erro na conexão com o banco de dados.<br/>". $e->getMessage() ;
+        die();
+    }  
 }
-
-conectar();
-
-if (!conectar()) {
-    echo "Erro ao tentar conectar com o banco.";
-}
-
-$pdo = conectar();
+$pdo = conectar();   
 ?>
