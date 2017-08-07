@@ -41,8 +41,8 @@
 		<td><?php echo $linhas->qtd_produto  ; ?></td>
 		<td><?php echo $linhas->desc_produto ; ?></td>
 
-		<td><a href='altera_produto.php?id= <?php echo $vetor["id_produto"]; ?>'> <img src="img/icone_editar.png" width="20"></a></td>
-		<td><a href='delete_produto.php?id= <?php echo $vetor["id_produto"]; ?>'><img src="img/icone_deletar.png" width="20"></a></td>
+		<td><a href='altera_produto.php?id= <?php echo $linhas->id_produto; ?>'> <img src="img/icone_editar.png" width="20"></a></td>
+		<td><a href='delete_produto.php?id= <?php echo $linhas->id_produto; ?>'><img src="img/icone_deletar.png" width="20"></a></td>
 	</tr>	
 <?php
 	}
