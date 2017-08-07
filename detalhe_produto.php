@@ -4,7 +4,8 @@
 	/*$sql = "select * from produto where id_produto=".$_GET['id'];
 	$rs = mysql_query($sql, $con);
 	while($vetor = mysql_fetch_array($rs)) {*/
-	$consultaProduto = $pdo -> prepare("SELECT * FROM produto WHERE id_produto = ".$_GET['id']);
+	$consultaProduto = $pdo -> prepare("SELECT * FROM produto WHERE id_produto = :id_produto");
+	$consultaProduto -> bindValue(":id_produto"   , $_GET['id']   , PDO::PARAM_INT);
 	//Executando a QUERY
 	$consultaProduto -> execute();
 	
