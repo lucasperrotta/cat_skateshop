@@ -22,28 +22,27 @@
 	}
 	
 	if(!is_null($pdo) and !$tem_erro) {
-		$sql = $pdo -> prepare("INSERT INTO produto (nm_produto, cat_produto, desc_produto, preco_produto, qtd_produto, foto_produto) VALUES (:nm_produto, :cat_produto, :desc_produto, :preco_produto, :qtd_produto, :foto_produto)");
+		$insereProduto = $pdo -> prepare("INSERT INTO produto (nm_produto, cat_produto, desc_produto, preco_produto, qtd_produto, foto_produto) VALUES (:nm_produto, :cat_produto, :desc_produto, :preco_produto, :qtd_produto, :foto_produto)");
 
-		$sql -> bindValue(":nm_produto"   , $nm_produto   , PDO::PARAM_STR);
-		$sql -> bindValue(":cat_produto"  , $cat_produto  , PDO::PARAM_STR);
-		$sql -> bindValue(":desc_produto" , $desc_produto , PDO::PARAM_STR);
-		$sql -> bindValue(":preco_produto", $preco_produto, PDO::PARAM_STR);
-		$sql -> bindValue(":qtd_produto"  , $qtd_produto  , PDO::PARAM_INT);
-		$sql -> bindValue(":foto_produto" , $foto_produto , PDO::PARAM_STR);
+		$insereProduto -> bindValue(":nm_produto"   , $nm_produto   , PDO::PARAM_STR);
+		$insereProduto -> bindValue(":cat_produto"  , $cat_produto  , PDO::PARAM_STR);
+		$insereProduto -> bindValue(":desc_produto" , $desc_produto , PDO::PARAM_STR);
+		$insereProduto -> bindValue(":preco_produto", $preco_produto, PDO::PARAM_STR);
+		$insereProduto -> bindValue(":qtd_produto"  , $qtd_produto  , PDO::PARAM_INT);
+		$insereProduto -> bindValue(":foto_produto" , $foto_produto , PDO::PARAM_STR);
 
-		$sql -> execute();
-		$bdError = $sql->errorInfo();
+		$insereProduto -> execute();
+		$bdError = $insereProduto->errorInfo();
 
 
 		if ($bdError[0] == 0) {
-			
 			echo "<h1>Produto cadastrado com sucesso.</h1><br><p class='linkfeedback'><a href='index.php'><b>Prosseguir</b></a></p>";
-		}else {
+		} else {
 			$errorInfo = print_r($bdError, true);
 			echo ("Erro de inclusão: ".$errorInfo);
 		}
 	} else {
-		echo ("Erro de conexão".mysql_error());
+		echo ("Erro de conexão.");
 	}
 
 	include "templates/rodape.php";
