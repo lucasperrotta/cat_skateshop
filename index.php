@@ -8,21 +8,22 @@
 	$sql = "select * from produto order by id_produto desc;";
 	$rs = mysql_query($sql, $con);
 	*/
-	$consultaProduto = $pdo -> prepare("SELECT * FROM produto ORDER BY id_produto DESC LIMIT 12");
-	//Executando a QUERY
-	$consultaProduto -> execute();
-	
-	$linha = $consultaProduto->fetchAll(PDO::FETCH_OBJ);
-	
-	/*Exibição antiga
-	while($vetor = mysql_fetch_array($rs)) {
-		$nm_produto = $vetor['nm_produto'];
-		$foto_produto = $vetor['foto_produto'];
-		$preco_produto = $vetor['preco_produto']; */
-	foreach ($linha as $linhas) {
-		$nm_produto = $linhas->nm_produto;
-		$foto_produto = $linhas->foto_produto;
-		$preco_produto = $linhas->preco_produto;
+	try {
+		$consultaProduto = $pdo -> prepare("SELECT * FROM produto ORDER BY id_produto DESC LIMIT 12");
+		//Executando a QUERY
+		$consultaProduto -> execute();
+		
+		$linha = $consultaProduto->fetchAll(PDO::FETCH_OBJ);
+		
+		/*Exibição antiga
+		while($vetor = mysql_fetch_array($rs)) {
+			$nm_produto = $vetor['nm_produto'];
+			$foto_produto = $vetor['foto_produto'];
+			$preco_produto = $vetor['preco_produto']; */
+		foreach ($linha as $linhas) {
+			$nm_produto = $linhas->nm_produto;
+			$foto_produto = $linhas->foto_produto;
+			$preco_produto = $linhas->preco_produto;
 ?>		
 
 	<div class='produto'>
@@ -45,6 +46,9 @@
 	</div>
 
 <?php 
+		}
+	} catch (PDOException $e) {
+		echo "Erro na consulta no banco de dados.<br/>".$e->getMessage() ;
 	}
 	include "templates/rodape.php";
 ?>
